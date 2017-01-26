@@ -55,9 +55,6 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
         }
         console.log("Query execution successful.");
       
-        _session = req.session;
-        _session.token = result[0].token;
-        _session.mail = result[0].mail;
         res.json({
           "Error": false,
           "Message": "OK",
