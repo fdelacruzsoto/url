@@ -62,7 +62,7 @@ REST.prototype.configureExpress = function(pool) {
   });
   app.use('/api', router);
   app.use(morgan("dev"));
-  //app.use(express.static("./static"));
+  app.use(express.static("./static"));
   var login_router    = new login(router, pool, md5);
   var register_router = new register(router, pool, md5);
   var url_router      = new url(router, pool, md5);

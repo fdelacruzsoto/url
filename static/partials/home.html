@@ -1,0 +1,21 @@
+<div ng-controller="HomeCtrl" layout="column" ng-cloak="" ng-app="URL">
+  <md-content layout-padding="">
+    <form name="projectForm">
+      <div layout="row">
+        <md-input-container flex="50">
+          <label>URL</label>
+          <input required="" name="url" ng-model="url">
+          <div ng-messages="url.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
+          <md-button class="md-raised md-primary" ng-click="short()">Make it short!</md-button>
+          <md-button class="md-raised md-primary" ng-click="list()">List all url created</md-button>
+        </section>
+      </div>
+    </form>
+  </md-content>
+</div>
