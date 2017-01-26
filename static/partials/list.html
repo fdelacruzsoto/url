@@ -1,0 +1,21 @@
+  <div flex-gt-sm="50" flex="">
+
+    <md-toolbar layout="row" class="md-hue-3">
+      <div class="md-toolbar-tools">
+        <span>Url</span>
+      </div>
+    </md-toolbar>
+
+    <md-content>
+      <md-list flex="">
+        <md-subheader class="md-no-sticky">All url created</md-subheader>
+        <md-list-item class="md-3-line" ng-repeat="item in todos" ng-click="null">
+          <div class="md-list-item-text" layout="column">
+            <h3>Id: {{ item.id_url }}</h3>
+            <h4>Orinal: {{ item.original_url }}</h4>
+            <p> Short: http://localhost:3000/api/r/{{ item.short_url }}</p>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </div>
