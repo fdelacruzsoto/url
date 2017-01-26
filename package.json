@@ -1,0 +1,21 @@
+{
+  "name": "urlshortener",
+  "version": "1.0.0",
+  "description": "An url shortener",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "fdelacruzsoto@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "MD5": "~1.2.1",
+    "body-parser": "~1.12.0",
+    "cors": "^2.7.1",
+    "express": "~4.12.2",
+    "express-session": "^1.15.0",
+    "jsonwebtoken": "^7.2.1",
+    "morgan": "latest",
+    "mysql": "~2.5.5"
+  }
+}
