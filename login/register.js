@@ -15,7 +15,6 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
     console.log('[SERVICE] - POST register');
     var JWT_SECRET = '1234567890SMHH';
     var token  = jwt.sign({user: req.body.email}, JWT_SECRET);
-    console.error('[Token] - ' + token);
     
     var query   = 'INSERT INTO '  + 
                 '   user '        +

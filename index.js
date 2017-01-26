@@ -14,6 +14,7 @@ var morgan      = require('morgan');
 // App components
 var login       = require('./login/login.js');
 var register    = require('./login/register.js');
+var url         = require('./url/url.js');
 
 /*
  * App entry point
@@ -64,6 +65,7 @@ REST.prototype.configureExpress = function(pool) {
   //app.use(express.static("./static"));
   var login_router    = new login(router, pool, md5);
   var register_router = new register(router, pool, md5);
+  var url_router      = new url(router, pool, md5);
   self.startServer();
 }
 
