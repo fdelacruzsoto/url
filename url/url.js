@@ -33,7 +33,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
     pool.getConnection(function(err, connection){
       
       if(err) {
-        console.error('[Error] - register: ' + err);
+        console.error('[Error] - url: ' + err);
         res.statusCode = 500;
         res.json({
           "Error": true,
@@ -45,7 +45,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
       connection.query(query, function(err, result){
         connection.release();
         if(err) {
-          console.error('[Error] - register: ' + err);
+          console.error('[Error] - url: ' + err);
           res.statusCode = 500;
           res.json({
             "Error": true,
@@ -63,6 +63,96 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
       
     });
   });
+  
+  router.get('/r/:url', function(req, res) {
+    console.log('[SERVICE] - Redirect. ');
+    var url = req.params.url;
+    var query   = 'SELECT '           +
+                  '   original_url '  + 
+                  'FROM '             +
+                  '   url '           +
+                  'WHERE '            +
+                  '   short_url = ? ';
+    
+    var params  = [url];
+    var query   = mysql.format(query, params);
+    
+    pool.getConnection(function(err, connection){
+      
+      if(err) {
+        console.error('[Error] - redirect: ' + err);
+        res.statusCode = 500;
+        res.json({
+          "Error": true,
+          "Message": "Internal server error."
+        });
+        return;
+      }
+      
+      connection.query(query, function(err, result){
+        connection.release();
+        if(err) {
+          console.error('[Error] - redirect: ' + err);
+          res.statusCode = 500;
+          res.json({
+            "Error": true,
+            "Message": "Internal server error."
+          });
+          return
+        }
+        console.log("Query execution successful.");
+        res.json({
+          "Error": false,
+          "Message": "OK",
+          "Results": result
+        });
+      });
+      
+    });
+    
+  });
+  
+  router.get('/list', function(req, res) {
+    console.log('[SERVICE] - List. ');
+    var query   = 'SELECT * FROM url';     
+
+    query   = mysql.format(query);
+    console.log("Query :" + query);
+    
+    pool.getConnection(function(err, connection){
+      
+      if(err) {
+        console.error('[Error] - list: ' + err);
+        res.statusCode = 500;
+        res.json({
+          "Error": true,
+          "Message": "Internal server error."
+        });
+        return;
+      }
+      
+      connection.query(query, function(err, result){
+        connection.release();
+        if(err) {
+          console.error('[Error] - list: ' + err);
+          res.statusCode = 500;
+          res.json({
+            "Error": true,
+            "Message": "Internal server error."
+          });
+          return
+        }
+        console.log("Query execution successful.");
+        res.json({
+          "Error": false,
+          "Message": "OK",
+          "Results": result
+        });
+      });
+      
+    });
+  });
+  
 }
 
 module.exports = REST_ROUTER
