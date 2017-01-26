@@ -17,5 +17,12 @@
     "jsonwebtoken": "^7.2.1",
     "morgan": "latest",
     "mysql": "~2.5.5"
+  },
+  "engines": {
+    "node": "4.1.1"
+  },
+   "repository" :{ 
+    "type" : "git",
+    "url" : "https://github.com/fdelacruzsoto/url"
   }
 }
